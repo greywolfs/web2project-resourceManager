@@ -125,6 +125,7 @@ $AppUI->loadCalendarJS();
 // Setup the title block
 $titleBlock = new w2p_Theme_TitleBlock($AppUI->_('Resource Management'), 'helpdesk.png', $m, "$m.$a");
 $titleBlock->show();
+echo styleRenderBoxTop();
 ?>
 <div class="std">
 <link href="./modules/resourceManager/css/jquery.treeTable.css" rel="stylesheet" type="text/css" />
