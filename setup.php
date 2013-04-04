@@ -1,5 +1,5 @@
 <?php
-/* RESOURCE_M setup.php, v 0.1.0 2011/05/25 */
+/* resourceManager setup.php, v 0.1.0 2011/05/25 */
 /*
 * Copyright (c) 2011 Region Poitou-Charentes (France)
 *
@@ -21,34 +21,34 @@ if (!defined('W2P_BASE_DIR')) {
 
 /**
  *  Name: Resource Management
- *  Directory: resource_m
+ *  Directory: resourceManager
  *  Version 1.0
  *  Type: user
- *  UI Name: resource_m
+ *  UI Name: resourceManager
  *  UI Icon: ?
  */
 
 $config = array();
 $config['mod_name'] = 'Resource Management';
 $config['mod_version'] = '1.0';
-$config['mod_directory'] = 'resource_m';
-$config['mod_setup_class'] = 'CSetupResource_m';
+$config['mod_directory'] = 'resourceManager';
+$config['mod_setup_class'] = 'CSetupResourceManager';
 $config['mod_type'] = 'user';
 $config['mod_ui_name'] = 'Resource Management';
 $config['mod_ui_icon'] = 'folder5.png';
 $config['mod_description'] = 'This module display and edit the occupation of resources';
 $config['mod_config'] = false;
 
-$config['permissions_item_table'] = 'resource_m';
-$config['permissions_item_field'] = 'resource_m_id';
-$config['permissions_item_label'] = 'resource_m_name';
+$config['permissions_item_table'] = 'resourceManager';
+$config['permissions_item_field'] = 'resourceManager_id';
+$config['permissions_item_label'] = 'resourceManager_name';
 
 if (@$a == 'setup') {
 	echo w2PshowModuleConfig($config);
 }
 
 
-class CSetupResource_m extends w2p_Core_Setup {
+class CSetupresourceManager extends w2p_Core_Setup {
 
   function configure() { return true; }
 

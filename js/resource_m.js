@@ -1,4 +1,4 @@
-/* RESOURCE_M resource_m.js, v 0.2.0 2012/07/19 */
+/* resourceManager resource_m.js, v 0.2.0 2012/07/19 */
 /*
 * Copyright (c) 2011-2012 Region Poitou-Charentes (France)
 *

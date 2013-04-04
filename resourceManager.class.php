@@ -1,5 +1,5 @@
 <?php
-/* RESOURCE_M resource_m.php, v 0.2.0 2012/07/19 */
+/* resourceManager resource_m.php, v 0.2.0 2012/07/19 */
 /*
 * Copyright (c) 2011-2012 Region Poitou-Charentes (France)
 *
@@ -732,7 +732,7 @@ function generateTdUsers($colCount) {
 function generateFilterLink($filter_name,$filter_id,$string,$color='auto') {
 	$res  = '<a onclick="javascript:$(\'select[name='.$filter_name.'_id]\').val(\''.$filter_id.'\'); '
 			.'$(\'#submitButton\').click();" '
-			.'onmouseenter="javascript:$(this).append($(\'<img style=\\\'float:right;\\\' src=\\\'./modules/resource_m/images/filter.png\\\' height=\\\'12\\\' width=\\\'12\\\' />\'));" '
+			.'onmouseenter="javascript:$(this).append($(\'<img style=\\\'float:right;\\\' src=\\\'./modules/resourceManager/images/filter.png\\\' height=\\\'12\\\' width=\\\'12\\\' />\'));" '
 			.'onMouseOut="$(this).find(\'img:last\').remove();" '
 			.'style="cursor: pointer; color: '.$color.';">'.$string.'</a>';
 	return $res;

@@ -1,5 +1,5 @@
 <?php
-/* RESOURCE_M index.php, v 0.1.2 2012/07/19 */
+/* resourceManager index.php, v 0.1.2 2012/07/19 */
 /*
 * Copyright (c) 2011-2012 Region Poitou-Charentes (France)
 *
@@ -54,7 +54,7 @@ require_once $AppUI->getModuleClass('projects');
 require_once $AppUI->getModuleClass('contacts');
 require_once $AppUI->getModuleClass('companies');
 require_once $AppUI->getModuleClass('departments');
-require_once $AppUI->getModuleClass('resource_m');
+require_once $AppUI->getModuleClass('resourceManager');
 
 // Config
 $company_prefix = 'c_';
@@ -126,11 +126,12 @@ $AppUI->loadCalendarJS();
 $titleBlock = new w2p_Theme_TitleBlock($AppUI->_('Resource Management'), 'helpdesk.png', $m, "$m.$a");
 $titleBlock->show();
 ?>
-<link href="./modules/resource_m/css/jquery.treeTable.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="./modules/resource_m/js/jquery.js"></script>
-<script type="text/javascript" src="./modules/resource_m/js/jquery.ui.js"></script>
-<script type="text/javascript" src="./modules/resource_m/js/jquery.treeTable.js"></script>
-<script type="text/javascript" src="./modules/resource_m/js/resource_m.js"></script>
+<div class="std">
+<link href="./modules/resourceManager/css/jquery.treeTable.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="./modules/resourceManager/js/jquery.js"></script>
+<script type="text/javascript" src="./modules/resourceManager/js/jquery.ui.js"></script>
+<script type="text/javascript" src="./modules/resourceManager/js/jquery.treeTable.js"></script>
+<script type="text/javascript" src="./modules/resourceManager/js/resource_m.js"></script>
 <script type="text/javascript">
 	var timer; 	// Will be used to delay the display of additionnal informations relative to user/project/task.
 	var start;	// Will be used to know if user have changed the start date during edition.
@@ -151,7 +152,7 @@ $titleBlock->show();
 	});
 </script>
 
-<form id="mainFrm" name="mainFrm" action="?m=resource_m" method="post">
+<form id="mainFrm" name="mainFrm" action="?m=resourceManager" method="post">
 	<input type="hidden" name="datePicker" value="res" />
 	<table class="tbl std" cellspacing="0" cellpadding="4" border="0" width ="100%">
 		<tbody>
@@ -163,7 +164,7 @@ $titleBlock->show();
 				$nedate = new w2p_Utilities_Date($end_date); $nedate->addMonths(1); ?>
 				<td align="right" nowrap="nowrap">
 					<?php echo generateRangeLink($psdate->format("%Y%m%d"), $pedate->format("%Y%m%d"), 
-												'<img src="./modules/resource_m/images/prev.gif" width="16" height="16" alt="'.$AppUI->_('previous').'" border="0">')
+												'<img src="./modules/resourceManager/images/prev.gif" width="16" height="16" alt="'.$AppUI->_('previous').'" border="0">')
 								.'  '.$AppUI->_('From').':';?>
 				</td>
 				<td align="left" nowrap="nowrap">
@@ -181,7 +182,7 @@ $titleBlock->show();
 						<img src="<?php echo w2PfindImage('calendar.gif'); ?>" width="24" height="12" alt="<?php echo $AppUI->_('Calendar'); ?>" border="0" />
 					</a>
 					<?php echo '  '.generateRangeLink($nsdate->format("%Y%m%d"), $nedate->format("%Y%m%d"),
-													'<img src="./modules/resource_m/images/next.gif" width="16" height="16" alt="'.$AppUI->_('next').'" border="0">');?>
+													'<img src="./modules/resourceManager/images/next.gif" width="16" height="16" alt="'.$AppUI->_('next').'" border="0">');?>
 				</td>
 				<td align="left" nowrap><input type="button" onclick="javascript:submitWithExpandList(this);" class="button" id="submitButton" value="<?php echo $AppUI->_("Submit"); ?>" /></td>
 				<td align="right" nowrap><?php echo $AppUI->_("Display").':'; ?></td>
@@ -438,7 +439,7 @@ $titleBlock->show();
 														.$department->department_name.'\');';
 					echo '<tr id="u_'.$user->contact_id.'_p_'.$project->project_id.'" class="child-of-u_'.$user->contact_id.'">'
 							.'<td class="tdRessource" onMouseOver="timer='.$fun.'" onMouseOut="hideProjectDetails(timer)" style="background-color: #'.$project->project_color_identifier.'; " >'
-								.'<img src="./modules/resource_m/images/applet3-48.png" width="12px" height:"12px" /> '
+								.'<img src="./modules/resourceManager/images/applet3-48.png" width="12px" height:"12px" /> '
 								.generateFilterLink('project', $project->project_id, $project->project_name,
 													bestColor($project->project_color_identifier))
 							.'</td>'
@@ -482,7 +483,7 @@ $titleBlock->show();
 										$aPercent = (round($aPercent*4)/4);
 										$aPercent = str_replace('.', '', $aPercent);
 										$aPercent = str_replace(',', '.', $aPercent);
-										$over 	  ='$(this).append($(\'<img style=\\\'float:right;\\\' src=\\\'./modules/resource_m/images/pencil.gif\\\' />\'));'
+										$over 	  ='$(this).append($(\'<img style=\\\'float:right;\\\' src=\\\'./modules/resourceManager/images/pencil.gif\\\' />\'));'
 													.'$(this).css(\'cursor\', \'pointer\'); ';
 										$out      = '$(this).find(\'img:last\').remove();'
 													.'$(this).css(\'cursor\', \'default\'); ';
@@ -500,7 +501,7 @@ $titleBlock->show();
 									echo '<td class="tdRessource" '.$add.' onMouseOver="javascript:'.$over.'timer='.$fun.'" '
 											.'onMouseOut="javascript:'.$out.'hideTaskDetails(timer)">';
 									if ($task->task_dynamic == 1 || !$canEdit)
-										echo '<img src="./modules/resource_m/images/dyna.gif" width="10px" height:"10px" /> '.$task->task_name.'</td>';
+										echo '<img src="./modules/resourceManager/images/dyna.gif" width="10px" height:"10px" /> '.$task->task_name.'</td>';
 									else
 										echo '<a>'.$task->task_name.'</a></td>';
 									echo generateTdTasks($colCount, $start_date, 
@@ -610,7 +611,7 @@ mergeTd();
 		<table border="0" cellpadding="2" cellspacing="0" class="tbl" width="100%" >
 			<tr>
 			<td width="100%" align="center"><?php echo $AppUI->_("Task Edition"); ?></td>
-			<td onClick="document.getElementById('assignEdit').style.display='none';"><img src="./modules/resource_m/images/cancel.gif" width="14" height="14" border="0"></td>
+			<td onClick="document.getElementById('assignEdit').style.display='none';"><img src="./modules/resourceManager/images/cancel.gif" width="14" height="14" border="0"></td>
 			</tr>
 		</table>
 		</td>
@@ -702,3 +703,4 @@ mergeTd();
 if($aff_style)
 	echo $AppUI->_("Assignments are rounded to 1/4 hour.");
 ?>
+</div>
